@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-eyutda6cg&0ljwv8xpi#d-+-rkxpu^ny$%@rz=_n8x!$!(rr9m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["http://185.42.14.206/"]
+ALLOWED_HOSTS = ["https://ionchik-kalambetmission-15b2.twc1.net"]
 LOGIN_URL = '/users/login/'
 
 # Application definition
@@ -42,6 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://ionchik-kalambetmission-15b2.twc1.net'
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
