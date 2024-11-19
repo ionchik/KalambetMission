@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-eyutda6cg&0ljwv8xpi#d-+-rkxpu^ny$%@rz=_n8x!$!(rr9m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://ionchik-kalambetmission-b863.twc1.net"]
+ALLOWED_HOSTS = ["ionchik-kalambetmission-b863.twc1.net"]
 LOGIN_URL = '/users/login/'
 
 # Application definition
