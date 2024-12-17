@@ -1,11 +1,101 @@
 {% extends "learning_logs/base.html" %}
+
 {% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4" style="color: #343a40; font-weight: 700;">Add new topic</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0" style="border-radius: 20px;">
+                <div class="card-body p-4">
+                    <form action="{% url 'learning_logs:new_topic' %}" method="post">
+                        {% csrf_token %}
+                        <!-- Поле формы -->
+                        <div class="mb-4">
+                            <label for="id_text" class="form-label fw-bold" style="color: #495057;">Title</label>
+                            <input type="text" name="text" id="id_text" class="form-control" placeholder="Введите название" required>
+                            {% if form.text.errors %}
+                                <div class="text-danger mt-2">{{ form.text.errors }}</div>
+                            {% endif %}
+                        </div>
 
-	<p>Add a new topic:</p>
-	<form action="{% url 'learning_logs:new_topic' %}" method='post'>
-	{% csrf_token %}
-		{{ form.as_p }}
-		<button name="submit">add topic</button>
-	</form>
+                        <!-- Кнопка отправки -->
+                        <button type="submit" class="btn btn-primary w-100" style="border-radius: 30px; padding: 12px; font-weight: 600; transition: all 0.3s ease;">
+                            Add
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<style>
+    /* Фон страницы */
+    body {
+        background-color: #f4f7fa; /* Светлый фон */
+    }
+
+    /* Карточка */
+    .card {
+        background-color: #ffffff;
+        border-radius: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Метки формы */
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    /* Поля ввода */
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #80bdff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+
+    /* Кнопка */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+    }
+
+    /* Ошибки */
+    .text-danger {
+        font-size: 0.875rem;
+        margin-top: 5px;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 576px) {
+        .form-control {
+            font-size: 0.95rem;
+        }
+        .btn-primary {
+            font-size: 1rem;
+            padding: 10px 15px;
+        }
+    }
+</style>
 {% endblock content %}

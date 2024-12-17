@@ -1,9 +1,112 @@
 {% extends "learning_logs/base.html" %}
+
 {% block content %}
-    <form method="post" action="{% url 'users:register' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button name="submit">register</button>
-        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
-    </form>
+<div class="container mt-5">
+    <!-- Заголовок формы -->
+    <h1 class="text-center mb-4" style="color: #343a40; font-weight: 700;">Register</h1>
+
+    <!-- Форма регистрации -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0" style="border-radius: 20px;">
+                <div class="card-body p-4">
+                    <form method="post" action="{% url 'users:register' %}">
+                        {% csrf_token %}
+
+                        <!-- Поля формы -->
+                        <div class="mb-4">
+                            <label for="id_username" class="form-label fw-bold" style="color: #495057;">Username</label>
+                            <input type="text" name="username" id="id_username" class="form-control" placeholder="Enter your username" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="id_password1" class="form-label fw-bold" style="color: #495057;">Password</label>
+                            <input type="password" name="password1" id="id_password1" class="form-control" placeholder="Enter your password" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="id_password2" class="form-label fw-bold" style="color: #495057;">Confirm Password</label>
+                            <input type="password" name="password2" id="id_password2" class="form-control" placeholder="Confirm your password" required>
+                        </div>
+
+                        <!-- Скрытое поле для next -->
+                        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+
+                        <!-- Кнопка регистрации -->
+                        <button type="submit" class="btn btn-primary w-100" style="border-radius: 30px; padding: 12px; font-weight: 600; transition: all 0.3s ease;">
+                            Register
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Стили -->
+<style>
+    /* Фон страницы */
+    body {
+        background-color: #f8f9fb;
+    }
+
+    /* Карточка */
+    .card {
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Метки формы */
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    /* Поля ввода */
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+
+    /* Кнопка регистрации */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+    }
+
+    /* Адаптивность */
+    @media (max-width: 576px) {
+        .form-control {
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            font-size: 1rem;
+            padding: 10px 15px;
+        }
+    }
+</style>
 {% endblock content %}

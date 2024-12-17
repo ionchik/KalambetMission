@@ -1,12 +1,135 @@
 {% extends "learning_logs/base.html" %}
 {% block content %}
-	{% if form.errors %}
-		<p>Your username and password didn't match. Please try again.</p>
-	{% endif %}
-	<form method="post" action="{% url 'users:login' %}">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button name="submit">log in</button>
-		<input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
-	</form>
+<div class="container mt-5">
+    <!-- Заголовок -->
+    <h1 class="text-center mb-4" style="color: #343a40; font-weight: 700;">Log In</h1>
+
+    <!-- Ошибка формы -->
+    {% if form.errors %}
+        <div class="alert alert-danger text-center" role="alert" style="font-size: 1rem;">
+            Your username and password didn't match. Please try again.
+        </div>
+    {% endif %}
+
+    <!-- Форма входа -->
+    <div class="row justify-content-center">
+        <div class="col-sm-8 col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0" style="border-radius: 20px;">
+                <div class="card-body p-4">
+                    <form method="post" action="{% url 'users:login' %}">
+                        {% csrf_token %}
+
+                        <!-- Поле ввода имени пользователя -->
+                        <div class="mb-4">
+                            <label for="id_username" class="form-label fw-bold" style="color: #495057;">Username</label>
+                            <input type="text" name="username" id="id_username" class="form-control" placeholder="Enter your username" required>
+                        </div>
+
+                        <!-- Поле ввода пароля -->
+                        <div class="mb-4">
+                            <label for="id_password" class="form-label fw-bold" style="color: #495057;">Password</label>
+                            <input type="password" name="password" id="id_password" class="form-control" placeholder="Enter your password" required>
+                        </div>
+
+                        <!-- Скрытое поле next -->
+                        <input type="hidden" name="next" value="{% url 'learning_logs:index' %}"/>
+
+                        <!-- Кнопка входа -->
+                        <button type="submit" class="btn btn-primary w-100" style="border-radius: 30px; padding: 12px; font-weight: 600; transition: all 0.3s ease;">
+                            Log In
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Стили -->
+<style>
+    /* Фон страницы */
+    body {
+        background-color: #f8f9fb;
+    }
+
+    /* Карточка */
+    .card {
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Метки формы */
+    .form-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #495057;
+    }
+
+    /* Поле ввода */
+    .form-control {
+        border-radius: 10px;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+    }
+
+    /* Кнопка входа */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 1.1rem;
+        padding: 12px 20px;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+    }
+
+    /* Сообщение об ошибке */
+    .alert {
+        border-radius: 10px;
+        padding: 10px 15px;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .form-control {
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            font-size: 1.05rem;
+            padding: 12px 15px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .card {
+            border-radius: 15px;
+        }
+
+        .form-control {
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            font-size: 1rem;
+            padding: 10px 15px;
+        }
+    }
+</style>
 {% endblock content %}

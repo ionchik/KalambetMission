@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-eyutda6cg&0ljwv8xpi#d-+-rkxpu^ny$%@rz=_n8x!$!(rr9m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["ionchik-kalambetmission-b863.twc1.net"]
 LOGIN_URL = '/users/login/'
 
 # Application definition
@@ -73,7 +73,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'learning_log.wsgi.application'
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://ionchik-kalambetmission-b863.twc1.net'
+]
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 

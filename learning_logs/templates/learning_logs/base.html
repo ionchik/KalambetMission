@@ -10,48 +10,126 @@
 	{% bootstrap_javascript jquery='full' %}
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
-	<a class="navbar-brand" href="{% url 'learning_logs:index' %}">
-		Learning Log</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarCollapse" aria-controls="navbarCollapse"
-			aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span></button>
-	<div class="collapse navbar-collapse" id="navbarCollapse">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="{% url 'learning_logs:topics' %}">
-					Topics</a></li>
-		</ul>
-		<ul class="navbar-nav ml-auto">
-			{% if user.is_authenticated %}
-				<li class="nav-item mx-auto">
-					<span class="navbar-text"> Hello, {{ user.username }}.</span>
-				</li>
-				<li class="nav-item mx-auto">
-					<!--<a class="nav-link" href="{% url 'users:logout' %}">Log out</a>-->
-                    <form id="logout-form" action="{% url 'users:logout' %}" method="POST">
-                        {% csrf_token %}
-                        <button class="btn btn-outline-dark" type="submit">Log out</button>
-                    </form>
-				</li>
-			{% else %}
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'users:register' %}">Register</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'users:login' %}">Log in</a></li>
-			{% endif %}
-		</ul>
-	</div>
-</nav>
-<main role="main" class="container">
-	<div class="pb-2 mb-2 border-bottom">
-		{% block page_header %}{% endblock page_header %}
-	</div>
-	<div>
-		{% block content %}{% endblock content %}
-	</div>
-</main>
+  <nav class="navbar navbar-expand-md navbar-light shadow-sm mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand" href="{% url 'learning_logs:index' %}">
+        Learning Log
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarCollapse" aria-controls="navbarCollapse"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'learning_logs:topics' %}">Topics</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          {% if user.is_authenticated %}
+            <li class="nav-item mx-3">
+              <span class="navbar-text text-dark">Hello, {{ user.username }}.</span>
+            </li>
+            <li class="nav-item mx-3">
+              <form id="logout-form" action="{% url 'users:logout' %}" method="POST">
+                {% csrf_token %}
+                <button class="btn btn-outline-danger" type="submit">Log out</button>
+              </form>
+            </li>
+          {% else %}
+            <li class="nav-item mx-3">
+              <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+            </li>
+            <li class="nav-item mx-3">
+              <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main role="main" class="container">
+    <div>
+      {% block content %}{% endblock content %}
+    </div>
+  </main>
+
+  <style>
+    /* Обновленные стили для шапки */
+    .navbar {
+      background-color: #ffffff;  /* Белый фон для чистоты и минимализма */
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #e0e0e0;  /* Легкая граница снизу */
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #007bff;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .navbar-brand:hover {
+      color: #0056b3;
+    }
+
+    .nav-link {
+      color: #343a40;
+      font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    .navbar-text {
+      font-size: 1.1rem;
+      color: #343a40;
+    }
+
+    .btn-outline-danger {
+      color: #dc3545;
+      border-color: #dc3545;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline-danger:hover {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    /* Стиль для адаптивного отображения на мобильных устройствах */
+    @media (max-width: 768px) {
+      .navbar-nav {
+        text-align: center;
+      }
+    }
+
+    /* Добавление теней для кнопок и ссылок */
+    .navbar-nav .nav-link,
+    .btn-outline-danger {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .btn-outline-danger:hover {
+      transform: translateY(-2px);  /* Плавное поднятие элементов */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Легкая тень для кнопок */
+    }
+
+    /* Плавные анимации для элементов */
+    .navbar-toggler-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .navbar-toggler:focus .navbar-toggler-icon {
+      transform: rotate(90deg);  /* Анимация кнопки меню */
+    }
+  </style>
 </body>
 </html>

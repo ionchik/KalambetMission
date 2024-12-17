@@ -1,14 +1,93 @@
 {% extends "learning_logs/base.html" %}
 {% block content %}
-  <p>Topics</p>
-  <ul>
-    {% for topic in topics %}
-        <li>
-            <a href="{% url 'learning_logs:topic' topic.id %}">{{ topic }}</a>
-        </li>
-    {% empty %}
-      <li>No topics ¯\_(ツ)_/¯</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'learning_logs:new_topic' %}">Add a new topic:</a>
+  <div class="container py-4">
+    <h2 class="text-center text-primary mb-4">Topics</h2>
+
+    {% if topics %}
+      <div class="row">
+        {% for topic in topics %}
+          <div class="col-md-4 mb-4">
+            <div class="card shadow-sm border-light">
+              <div class="card-body">
+                <h5 class="card-title">{{ topic }}</h5>
+                <a href="{% url 'learning_logs:topic' topic.id %}" class="btn btn-outline-primary w-100">View Topic</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="alert alert-info text-center" role="alert">
+        No topics ¯\_(ツ)_/¯
+      </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+      <a href="{% url 'learning_logs:new_topic' %}" class="btn btn-primary">Add a New Topic</a>
+    </div>
+  </div>
 {% endblock content %}
+
+<style>
+  /* Стиль для темы страницы */
+  .container {
+    max-width: 1100px;
+  }
+
+  h2 {
+    font-weight: bold;
+  }
+
+  .card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #007bff;
+  }
+
+  .card-body {
+    padding: 1.5rem;
+  }
+
+  .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+
+  /* Стиль для адаптивности */
+  @media (max-width: 768px) {
+    .row {
+      display: block;
+    }
+
+    .card {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>

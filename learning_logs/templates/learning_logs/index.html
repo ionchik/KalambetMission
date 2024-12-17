@@ -1,4 +1,93 @@
 {% extends "learning_logs/base.html" %}
+
 {% block content %}
-    <p>Learning Log helps you!</p>
+<div class="container mt-5">
+    <!-- Центрирование содержимого -->
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6 text-center">
+            <!-- Карточка с приветствием -->
+            <div class="card shadow-lg border-0" style="border-radius: 20px;">
+                <div class="card-body p-5">
+                    <!-- Иконка/логотип -->
+                    <div class="mb-4">
+                        <i class="fas fa-lightbulb" style="font-size: 3rem; color: #007bff;"></i>
+                    </div>
+                    <!-- Заголовок -->
+                    <h1 class="fw-bold mb-3" style="color: #343a40;">Welcome to Learning Log!</h1>
+                    <!-- Основное сообщение -->
+                    <p class="text-muted mb-4" style="font-size: 1.1rem;">
+                        Learning Log helps you track your learning progress and organize your thoughts effectively.
+                    </p>
+                    <!-- Кнопка для начала работы -->
+                    <a href="{% url 'learning_logs:topics' %}" class="btn btn-primary" style="border-radius: 30px; padding: 12px 30px; font-weight: 600; transition: all 0.3s ease;">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Стили -->
+<style>
+    /* Фон страницы */
+    body {
+        background-color: #f8f9fb;
+    }
+
+    /* Карточка */
+    .card {
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Иконка */
+    .fas.fa-lightbulb {
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .fas.fa-lightbulb:hover {
+        color: #0056b3;
+        transform: scale(1.2);
+    }
+
+    /* Текст заголовка */
+    h1 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    /* Кнопка */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        font-size: 1.1rem;
+        transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+    }
+
+    /* Адаптивность */
+    @media (max-width: 576px) {
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        .btn-primary {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+    }
+</style>
 {% endblock content %}
